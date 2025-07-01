@@ -179,6 +179,7 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
     printf("Digite o nome do seu personagem: ");
     fgets(jogador->nome, 20, stdin); //usar seta pois é ponteiro
     limpar_tela()
+
     printf("Para começar o verão arrasando escolha quais roupas você vai querer disfilar pela cidade de Baía Azul.\n");
     pause();
     printf("Qual desses looks você vai querer usar no seu primeiro dia de verão?\n");
@@ -191,6 +192,7 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
         jogador.estilo=10;
         printf("Arrasouuuu!!! A mais estilosa que Baía Azul jáviu!! Com os seus incríveis 10 no quesito estilo.\n");
     limpar_tela();
+
     printf("Agora conte mais sobre seus hobbies favoritos\n");
     pause();
     printf("O que você mais gosta de fazer no seu tempo livre?\n");
@@ -202,17 +204,28 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
     else
         jogador.inteligencia=10;
         printf("Isso aí diva estudiosa e esforçada, continue assim! A mais mais de toda Baía Azul nota 10 para a sua inteligência.\n");
-        limpar_tela();
-    printf("Qual dessas opções você mais se identifica?");
+    limpar_tela();
+    
+    printf("Qual dessas opções você mais se identifica?\n");
     pause();
-    printf("1. Arrogante, mal educada, ignorante, sem noção.");
-    printf("2. Comunicativa, empática, autentêntica e é uma pessoa amorosa.");
+    printf("1. Arrogante, mal educada, ignorante, sem noção.\n");
+    printf("2. Comunicativa, empática, autentêntica e é uma pessoa amorosa.\n");
     if(digita_escolha()==1)
         jogador.carisma=3;
-        printf("   ");
+        printf("Você precisa melhorar como pessoa urgentemente. Ninguém te aguenta nota 3 de carisma para você.\n");
     else
         jogador.carisma=10;
-        printf("  ");
+        printf("Parabéns todos te amam você é a diva suprema, nota 10 para o seu carisma.\n");
+    limpar_tela();
+
+    printf("Rode um dado de 6 lados para ver o quanto de sorte você terá ao longo do seu verão.\n");
+    pause();
+    printf("Você vai começar com %d de sorte, mas ao longo do jogo isso pode mudar.\n", dado(jogador.sorte));
+    limpar_tela();
+
+    printf("Seu amor vai começar com zero, mas quem sabe ao longo do tempo que você vai passar em Baía Azul isso não mude...\n");
+    limpar_tela();
+    
 }
 
 void salvar_personagem(PERSONAGEM *jogador, const char *filename)
@@ -220,4 +233,9 @@ void salvar_personagem(PERSONAGEM *jogador, const char *filename)
 
 
 
+}
+
+int dado(int *sorte)
+{
+    return *sorte = (rand()%6)+1;
 }
