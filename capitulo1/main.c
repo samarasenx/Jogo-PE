@@ -7,15 +7,17 @@
 void limpar_tela();
 int imprimir_menu();
 int digita_escolha();
-void novo_jogo(PERSONAGEM *jogador); //Historia 
+void novo_jogo(PERSONAGEM *jogador); //Historia Principal 
 int continuar_jogo(PERSONAGEM *jogador);
-void Introducao();
+void Introducao(PERSONAGEM *jogador);
 void pause();
 void cria_personagem(PERSONAGEM *jogador);
 void salvar_personagem(PERSONAGEM *jogador, const char *filename);
 void final();
 int dado(int *sorte);
 void status();
+void combate();
+void integrantes();
 
 
 
@@ -76,13 +78,17 @@ int main()
                 break;
 
             case 4:
-                status(  );
+                status(   );
+                break;
+
+            case 5:
+                integrantes();
                 break;
 
             default:
                 printf("Escolha uma das opções disponíveis.\n");
         }
-    }while(opcao!=4)
+    }while(opcao!=5)
 
     return 0;
 }
@@ -107,6 +113,7 @@ int imprimir_menu()
     printf("2. Continuar\n");
     printf("3. Sair\n");
     printf("4. Status\n");
+    printf("5. Integrantes\n");
     printf("Escolha uma opção: ");
     scanf("%d",&opcao);
     limpar_tela();
@@ -134,12 +141,35 @@ void pause()
     getchar(); // Espera o ENTER do usuário
 }
 
-void Introducao() // escrever introducao da historia aqui FAZER
+void Introducao(PERSONAGEM *jogador) // Escrever introducao da historia aqui
 {
-    setlocale(LC_ALL, "Portuguese");
-    
-    printf("Voce eh %s, ......", jogador.nome);
+    setlocale(LC_ALL, "Portuguese"); 
+
+    printf("Você é %s, uma jovem em busca de um verao de tranquilidade antes de comecar a faculdade.\n", jogador.nome);
     pause();
+    printf("Pelo visto, veio passar as suas ferias de verao aqui na Baia Azul!\n");
+    pause();
+    printf("Essa e uma cidade pitoresca, conhecida pelas suas praias douradas e pelo cheiro inconfundivel de maresia.\n");
+    pause();
+    printf("Um verdadeiro refúgio, longe da rotina da cidade e da pressao dos estudos.\n");
+    pause();
+    printf("A brisa suave do mar entra pela janela do seu quarto, trazendo o som distante das gaivotas e o murmúrio das ondas.\n");
+    pause();
+    printf("Voce desfez a mala sem pressa, sentindo o calor do sol beijar sua pele.\n");
+    pause();
+    printf("O verao em Baia Azul seria diferente, voce sente. Uma promessa de dias longos e ensolarados.\n");
+    pause();
+    printf("O que este novo cenario guardaria para voce? Amizades? Aventuras? Talvez ate um romance de verao...\n");
+    pause();
+    printf("A vida em Baia Azul parecia sussurrar segredos, e voce esta pronta para ouvi-los.\n");
+    pause();
+    printf("Com a mochila da praia em uma mao e o coracao cheio de uma expectativa incerta na outra, voce desce as escadas.\n");
+    pause();
+    printf("O cafe da manha da sua avo te espera, e depois... bem, depois o dia e todo seu.\n");
+    pause();
+    printf("O que voce faz primeiro neste primeiro dia de verao em Baia Azul?\n");
+    pause();
+    //agora vai ir pro ep 1
 }
 
 void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
@@ -148,10 +178,16 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     cria_personagem(&jogador);
     salvar_personagem(&jogador, "personagem.txt");
     printf("\nPronto agora você é já pode ir aproveitar suas férias de verão em Baía Azul!\n");
+    limpar_tela();
+    Introducao();
+    limpar_tela();
+
+    // começo das quests
+    printf(" ");
 
     
 
-
+    salvar_jogo(&jogador);
 }
 
 void salvar_jogo(PERSONAGEM jogador)
@@ -254,4 +290,13 @@ void salvar_personagem(PERSONAGEM *jogador, const char *filename)
 int dado(int *sorte)
 {
     return *sorte = (rand()%6)+1;
+}
+
+void integrantes()
+{
+    printf("==============\n");
+    printf("Samara Sena\n");
+    printf("Raissa Barros\n");
+    printf("Laura Silva\n");
+    printf("==============\n");
 }
