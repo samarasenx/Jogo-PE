@@ -14,8 +14,8 @@ void pause();
 void cria_personagem(PERSONAGEM *jogador);
 void salvar_personagem(PERSONAGEM *jogador, const char *filename);
 void final();
-int dado(int *sorte);
-void status();
+int dado(int *jogador.sorte);
+void status(PERSONAGEM *jogador);
 void combate();
 void integrantes();
 
@@ -78,7 +78,7 @@ int main()
                 break;
 
             case 4:
-                status(   );
+                status(PERSONAGEM *jogador);
                 break;
 
             case 5:
@@ -287,7 +287,7 @@ void salvar_personagem(PERSONAGEM *jogador, const char *filename)
 
 }
 
-int dado(int *sorte)
+int dado(int *jogador.sorte)
 {
     return *sorte = (rand()%6)+1;
 }
@@ -299,4 +299,15 @@ void integrantes()
     printf("Raissa Barros\n");
     printf("Laura Silva\n");
     printf("==============\n");
+}
+
+void status(PERSONAGEM *jogador)
+{    
+   printf("\n=== ATRIBUTOS ATUAIS ===\n");    
+   printf("Sorte: %d\n", jogador.sorte);    
+   printf("Carisma: %d\n", jogador.carisma);    
+   printf("Estilo: %d\n", jogador.estilo);    
+   printf("Inteligência: %d\n", jogador.inteligencia);    
+   printf("Amor: %d\n", jogador.amor);    
+   printf("=======================\n\n");
 }
