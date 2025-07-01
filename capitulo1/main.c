@@ -160,6 +160,7 @@ void continuar_jogo(PERSONAGEM *jogador)
 void criar_personagem(Personagem *jogador) // NAO TERMINEI
 {
     setlocale(LC_ALL, "Portuguese");
+    jogador.amor=0;
     printf("Digite o nome do seu personagem: ");
     fgets(jogador->nome, 20, stdin); //usar seta pois é ponteiro
     limpar_tela()
@@ -178,7 +179,7 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
     printf("Agora conte mais sobre seus hobbies favoritos\n");
     pause();
     printf("O que você mais gosta de fazer no seu tempo livre?\n");
-    printf("1. Ler, desenhar, estudar, tocar algum instrumento\n\n");
+    printf("1. Ler, desenhar, estudar, tocar algum instrumento\n");
     printf("2. Mexer no celular, ficar o dia todo no Instagram ou não ter nenhum hobbie\n");
     if(digita_escolha()==1)
         jogador.inteligencia=3;
@@ -187,6 +188,16 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
         jogador.inteligencia=10;
         printf("Isso aí diva estudiosa e esforçada, continue assim! A mais mais de toda Baía Azul nota 10 para a sua inteligência.\n");
         limpar_tela();
+    printf("Qual dessas opções você mais se identifica?");
+    pause();
+    printf("1. Arrogante, mal educada, ignorante, sem noção.");
+    printf("2. Comunicativa, empática, autentêntica e é uma pessoa amorosa.");
+    if(digita_escolha()==1)
+        jogador.carisma=3;
+        printf("   ");
+    else
+        jogador.carisma=10;
+        printf("  ");
 }
 
 void salvar_personagem(PERSONAGEM *jogador, const char *filename)
