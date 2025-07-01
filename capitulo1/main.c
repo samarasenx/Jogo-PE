@@ -150,6 +150,21 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
 
 }
 
+void salvar_jogo(PERSONAGEM jogador)
+{
+    FILE *salvar= fopen("salvarjogo.txt", wt);
+
+    if (salvar!= NULL) {
+        fwrite(&progresso, sizeof(PROGRESSO), 1, salvar);
+        fclose(salvar);
+        printf("Progresso salvo com sucesso!\n");
+    } 
+
+    else {
+        printf("Erro ao salvar o progresso.\n");
+    }
+}
+
 void continuar_jogo(PERSONAGEM *jogador)
 {
 
