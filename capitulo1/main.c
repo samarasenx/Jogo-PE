@@ -7,13 +7,16 @@
 void limpar_tela();
 int imprimir_menu();
 int digita_escolha();
-void novo_jogo(PERSONAGEM *jogador);
-void continuar_jogo(PERSONAGEM *jogador);
+void novo_jogo(PERSONAGEM *jogador); //Historia 
+int continuar_jogo(PERSONAGEM *jogador);
 void Introducao();
 void pause();
 void cria_personagem(PERSONAGEM *jogador);
 void salvar_personagem(PERSONAGEM *jogador, const char *filename);
 void final();
+int dado(int *sorte);
+void status();
+
 
 
 typedef struct PERSONAGEM_
@@ -73,8 +76,8 @@ int main()
                 break;
 
             case 4:
-
-
+                status(  );
+                break;
 
             default:
                 printf("Escolha uma das opções disponíveis.\n");
@@ -145,6 +148,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     cria_personagem(&jogador);
     salvar_personagem(&jogador, "personagem.txt");
     printf("\nPronto agora você é já pode ir aproveitar suas férias de verão em Baía Azul!\n");
+
     
 
 
@@ -154,22 +158,34 @@ void salvar_jogo(PERSONAGEM jogador)
 {
     FILE *salvar= fopen("salvarjogo.txt", wt);
 
-    if (salvar!= NULL) {
+    if (salvar!= NULL)
+    {
         fwrite(&progresso, sizeof(PROGRESSO), 1, salvar);
         fclose(salvar);
-        printf("Progresso salvo com sucesso!\n");
+        printf("Seu progresso salvo com sucesso!\n");
     } 
 
-    else {
+    else
+    {
         printf("Erro ao salvar o progresso.\n");
     }
 }
 
-void continuar_jogo(PERSONAGEM *jogador)
-{
-
-
-
+int continuar_jogo(PERSONAGEM *jogador, PROGRESSO *progresso_salvo)
+{    
+    FILE *continuar = fopen("salvarjogo.txt", "rt");
+    if(continuar != NULL) 
+    {        
+        int resultado = fread(progresso_salvo, sizeof(PROGRESSO), 1, continuar);        
+        fclose(continuar);                
+        if(resultado == 1) 
+        {            
+            printf("Progresso carregado!\n");            
+            return 0;        
+        }    
+    }        
+    printf("Nenhum progresso encontrado!\n");    
+    return 1;
 }
 
 void criar_personagem(Personagem *jogador) // NAO TERMINEI
@@ -225,7 +241,7 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
 
     printf("Seu amor vai começar com zero, mas quem sabe ao longo do tempo que você vai passar em Baía Azul isso não mude...\n");
     limpar_tela();
-    
+
 }
 
 void salvar_personagem(PERSONAGEM *jogador, const char *filename)
