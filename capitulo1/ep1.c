@@ -35,20 +35,19 @@ typedef struct PERSONAGEM_
 }PERSONAGEM;
 
 typedef struct GABRIEL_   //heroi
-{
-    int sorte;      
-    int carisma;   //carisma alto
-    int amor;     //amor=0
-    int estilo;  //estilo alto
+{     
+    int defesa;   
+    int amor;     
+    int estilo;
+    int nerd;  
 
 }GABRIEL;
 
 typedef struct LUCAS_   //vilao
 {
-    int sorte;
-    int carisma;   //carisma baixo
-    int estilo;   //estilo baixo
-    int amor;    //amor=0
+    int carisma;   
+    int ataque;   
+    int amor;    
 
 }LUCAS;
 
@@ -181,25 +180,38 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     limpar_tela();
     Introducao();
     limpar_tela();
+    int escolha;
+    GABRIEL heroi;
+    LUCAS vilao;
 
     // começo das quests
+
+    //quest 1
     printf("Para passar o tempo %s decidiu que precisava explorar um pouco por Baía Azul, mas não sabia ao certo se iria para a Biblioteca local ou para Praça\n",jogador.nome);
     printf("Escolha uma das opções: \n");
     printf("1. Biblioteca\n");
     printf("2. Praça\n");
-    do{
+    escolha=digita_escolha();
+    if(escolha==1){
         jogador.inteligencia=2;
-        printf("Após chegar na Biblioteca %s sem querer esbarra em um homem alto, moreno e dos olhos azuis mais apaixonantes que %s já viu, que estava carregando uma pilha de livros.\n", jogador.nome, jogador.nome);
-        //add 1 em item e 1 em quest
+        printf("Após chegar na Biblioteca %s sem querer esbarrou em um homem alto, moreno e dos olhos azuis mais apaixonantes que %s já viu, que estava carregando uma pilha de livros. Logo depois de se esbarrarem Gabriel se apaixonou, e então eles começaram a conversar e se conhecer.\n", jogador.nome, jogador.nome);
+        jogador.amor=1;
+        vilao.amor=1;
+        printf("Gabriel já encantado por %s, deu o livro favorito dele para %s, tendo em vista que os dois compatilham do mesmo interese por literatura\n"jogador.nome,jogador.nome);
+        jogador->itens+=1;
+        jogador->quests+=1;
+    }
+    if else(escolha==2){
+        printf("Após chegar na Praça %s sem querer esbarrou em um homem alto, ruivo e com várias tatuagens no braço, assim que se encontraram Lucas gritou resmungando que uma pessoa sonsa e desmiolada pisou no pé dele.\n",jogador.nome);
 
 
-    }while(digita_escolha()==1);
-    do{
 
 
+        jogador->quests+=1;
+    }
+    limpar_tela();
 
-
-    }while(digita_escolha()==2);
+    //quest 2
 
     
 
