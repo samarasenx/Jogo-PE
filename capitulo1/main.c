@@ -183,7 +183,23 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     limpar_tela();
 
     // começo das quests
-    printf(" ");
+    printf("Para passar o tempo %s decidiu que precisava explorar um pouco por Baía Azul, mas não sabia ao certo se iria para a Biblioteca local ou para Praça\n",jogador.nome);
+    printf("Escolha uma das opções: \n");
+    printf("1. Biblioteca\n");
+    printf("2. Praça\n");
+    do{
+        jogador.inteligencia=2;
+        printf("Após chegar na Biblioteca %s sem querer esbarra em um homem alto, moreno e dos olhos azuis mais apaixonantes que %s já viu, que estava carregando uma pilha de livros.\n", jogador.nome, jogador.nome);
+        //add 1 em item e 1 em quest
+
+
+    }while(digita_escolha()==1);
+    do{
+
+
+
+
+    }while(digita_escolha()==2);
 
     
 
@@ -251,10 +267,10 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
     printf("1. Ler, desenhar, estudar, tocar algum instrumento\n");
     printf("2. Mexer no celular, ficar o dia todo no Instagram ou não ter nenhum hobbie\n");
     if(digita_escolha()==1)
-        jogador.inteligencia=3;
+        jogador.inteligencia=2;
         printf("Vamos querer né! Não tem um hobbie legal, precisa mudar isso aí. Muito pouco repertório nota 3 para sua inteligência.\n");
     else
-        jogador.inteligencia=10;
+        jogador.inteligencia=5;
         printf("Isso aí diva estudiosa e esforçada, continue assim! A mais mais de toda Baía Azul nota 10 para a sua inteligência.\n");
     limpar_tela();
     
