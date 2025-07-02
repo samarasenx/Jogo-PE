@@ -131,8 +131,18 @@ int digita_escolha() // usar nas escolhas do jogador
 
 void final(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao)
 {
-
-
+    if(amorHeroi>amorVilao){
+        printf("(Aceita pedido de namoro de gabriel)\n");
+        printf("E vivem felizes para sempre!\n");
+        printf("(Contar passado obscuro de Lucas e falar que ele é um serial killer)\n");
+    }
+    else{
+        printf("(Aceita pedido de namoro lucas)\n");
+        printf("MORREU!!!!");
+        printf("(Contar passado obscuro de Lucas e falar que ele é um serial killer)\n");
+    }
+    jogador->quests+=1;
+    salvar_personagem(PERSONAGEM *jogador, const char *filaname);
 }
 
 // Função para pausar e esperar que o usuário pressione Enter
@@ -255,7 +265,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     else
         printf("Escolha errada, tentar novamente.");
 
-
+    salvar_personagem(PERSONAGEM *jogador, const char *filaname);
     limpar_tela();
 
     //quest 2
@@ -275,6 +285,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             if(subescolha==1){
                 jogador.amorHeroi+=1;
                 heroi.amor+=1;
+                heroi.inteligencia+=2;
                 heroi.defesa+=3;
                 printf("Gabriel chegou no encontro com um buque de flores para te dar.\n");
                 jogador->itenss+=1;
@@ -312,7 +323,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
                 printf("Lucas deu sua jaqueta de couro para %s ficar, já que estava fazendo muito frio a noite naquele momento.\n",jogador.nome);
                 jogador->itenss+=1;
                 vilao.estilo+=2;
-                jogador.estilo+=2;
+                jogador.estilo+=3;
             }
             else if(subescolha==2)
                 continue;
@@ -326,7 +337,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     else
         printf("Escolha errada, tentar novamente.");
 
-
+    salvar_personagem(PERSONAGEM *jogador, const char *filaname);
     limpar_tela();
 
     //quest 3
@@ -347,21 +358,26 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         subescolha=digita_escolha();
         if(subescolha==1)
         {
-           printf("(Acusar de assasinato)");
+            printf("(Acusar de assasinato)");
             pause();
             if(jogador.inteligencia<4){
                 printf("(falar que o jogador acredita nisso)");
+                jogador.inteligencia-=1;
+                vilao.ataque+=2;
 
             }
             else{
                 printf("(falar que o jogador nao acredita nisso)");
                 jogador.inteligencia+=1;
+                heroi.defesa+=2;
             }
         }
         else if(subescolha==2){
             vilao.amor+=1;
             jogador.amorVilao+=1;
             jogador.carisma+=2;
+
+            printf("(falar que quer ser amiga e que confia em lucas)");
             // ganhar item
 
         }
@@ -385,20 +401,30 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         if(subescolha==1){
             printf("(Acusar de assasinato)");
             pause();
-            if(jogador.inteligencia>4){
+            if(jogador.inteligencia<4){
                 printf("(falar que o jogador acredita nisso)");
+                jogador.inteligencia+=1;
+                heroi.defesa+=2;
+
 
             }
             else{
                 printf("(falar que o jogador nao acredita nisso)");
+                jogador.inteligencia-=1;
+                vilao.ataque+=2
             }
 
         }
         else if(subescolha==2){
             heroi.amor+=1;
             jogador.amorHeroi+=1;
-            jogador.carisma+=1;
-            // ganhar item
+            jogador.carisma+=4;
+            if(jogador.carisma<4){
+                printf("(falar que Gabriel deu dois presente para jogador)");
+                printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
+                jogador->itenss+=2;
+            }
+            
 
         }
         else
@@ -409,7 +435,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     else
         printf("Escolha errada, tentar novamente.");
 
-
+    salvar_personagem(PERSONAGEM *jogador, const char *filaname);
     limpar_tela();
 
     //quest 4   Combate
@@ -421,7 +447,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
 
     //quest 5   final
     final(jogador,heroi,vilao);
-    jogador->quests+=1;
+    
 
     limpar_tela();
 
@@ -598,6 +624,7 @@ void combate(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao)
     }
 
     jogador->quests+=1;
+    salvar_personagem(PERSONAGEM *jogador, const char *filaname);
 
 }
 
