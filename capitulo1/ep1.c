@@ -3,6 +3,7 @@
 #include<stdlib.h>
 #include <time.h>
 #include<locale.h>
+#include<windows.h>
 
 void limpar_tela();
 int imprimir_menu();
@@ -331,12 +332,19 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         printf("2. Se tornar amiga de Lucas\n");
         subescolha=digita_escolha();
         if(subescolha==1){
-            printf(" ")
+           printf("(Acusar de assasinato)");
+            pause();
+            if(jogador.inteligencia<4){
+                printf("(falar que o jogador acredita nisso)");
 
-        }
+            }
+            else{
+                printf("(falar que o jogador nao acredita nisso)");
+            }
         else if(subescolha==2){
-
-
+            vilao.amor+=1;
+            jogador.amorVilao+=1;
+            // ganhar item
 
         }
         else
@@ -345,11 +353,37 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
        jogador->quests+=1; 
     }
     else if(escolha==2){ //  conhecer gabriel na praia
+        printf("Enquanto %s estava observando o mar, surgiu no meio do nada um homem alto, oreno e dos olhos azuis mais apaixonantes que %s já viu, e esbarrou em %s sem querer.\n", jogador.nome,jogador.nome);
+        printf("Assim que Gabriel esbarrou (falar coisas boa e que ele é educado e carinhoso).\n",jogador.nome,jogador.nome);
+        pause();
+        printf("Você é nova por aqui né, sou a primeira pessoa que você conheceu por aqui?\n");
+        pause();
+        printf("%s diz que não, a primeira pessoa que %s conheceu foi Lucas.",jogador.nome,jogador.nome);
+        printf("O QUE??? O LUCAS?? Aquele motoqueiro desmiolado! Me desculpe por ter me alterado desse é que o Lucas é um completo imbecil. Você precisa urgentemente trocar esse seu ciclo de amizade. Vamos começar assim, primeiro eu viro seu amigo, você para de falar com o Lucas e nós podemos sair que tal?\n");
+        printf("Escolha uma opção: ");
+        printf("1. Perguntar o por que de o Lucas e o Gabriel se odiarem\n");
+        printf("2. Se tornar amiga de Gabriel\n");
+        subescolha=digita_escolha();
+        if(subescolha==1){
+            printf("(Acusar de assasinato)");
+            pause();
+            if(jogador.inteligencia>4){
+                printf("(falar que o jogador acredita nisso)");
 
+            }
+            else{
+                printf("(falar que o jogador nao acredita nisso)");
+            }
 
+        }
+        else if(subescolha==2){
+            heroi.amor+=1;
+            jogador.amorHeroi+=1;
+            // ganhar item
 
-
-
+        }
+        else
+           printf("Escolha errada, tentar novamente."); 
 
         jogador->quests+=1;
     }
