@@ -14,10 +14,10 @@ void Introducao(PERSONAGEM *jogador);
 void pause();
 void cria_personagem(PERSONAGEM *jogador);
 void salvar_personagem(PERSONAGEM *jogador, const char *filename);
-void final();
+void final(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao);
 int dado(int *jogador.sorte);
 void status(PERSONAGEM *jogador);
-void combate();
+void combate(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao);
 void integrantes();
 void lerCapitulo(const char *chap);
 
@@ -33,7 +33,7 @@ typedef struct PERSONAGEM_
     int amorHeroi;
     int amorVilao;
     int itens[10]; //usar para guardar os presentes romanticos do gabriel e lucas
-    int quests[10];
+    int quests[5];
 
 }PERSONAGEM;
 
@@ -129,7 +129,7 @@ int digita_escolha() // usar nas escolhas do jogador
 	return escolha;
 }
 
-void final()
+void final(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao)
 {
 
 
@@ -204,7 +204,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         jogador.amorHeroi+=1;
         heroi.amor+=1;
         heroi.inteligencia+=2;
-        printf("Gabriel já encantado por %s, deu o livro favorito dele para %s, tendo em vista que os dois compatilham do mesmo interese por literatura. Guarde na sua bolsa.\n"jogador.nome,jogador.nome);
+        printf("Gabriel já encantado por %s, deu o livro favorito dele para %s, tendo em vista que os dois compatilham do mesmo interese por literatura. Guarde na sua bolsa.\n",jogador.nome,jogador.nome);
         jogador->itens+=1;
         printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
         if(jogador.sorte>3){
@@ -219,7 +219,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     else if(escolha==2){
         printf("Após chegar na Praça %s sem querer esbarrou em um homem alto, ruivo e com várias tatuagens no braço, assim que se encontraram Lucas gritou resmungando que uma pessoa sonsa e desmiolada pisou no pé dele. Logo depois quando ele olhou para %s, e viu o quanto %s é bem de aparência, falou que até que não é tão sonsa assim...\n",jogador.nome,jogador.nome,jogador.nome);
         vilao.amor+=1;
-        printf("Lucas tinha um jeito esquisito de demonstrar as emoções. O que confundiu muito %s, pois ele falou que tinha achado a roupa de %s muito feia e começou a implicar com %s.\n",jogador.nome.jogador.nome,jogador.nome);
+        printf("Lucas tinha um jeito esquisito de demonstrar as emoções. O que confundiu muito %s, pois ele falou que tinha achado a roupa de %s muito feia e começou a implicar com %s.\n",jogador.nome,jogador.nome,jogador.nome);
         pause();
         printf("Mal sabia %s que Lucas estava começando a se apaixonar...",jogador.nome);
         pause();
@@ -310,7 +310,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         }
         jogador->quests+=1;
     }
-        else
+    else
         printf("Escolha errada, tentar novamente.");
 
 
@@ -319,7 +319,8 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     //quest 3
     
     printf("No outro dia de manhã, você decidiu ir a Praia ver o mar e pegar um pouco de sol.\n");
-    if(escolha==1){  //conhecer lucas na praia
+    if(escolha==1)
+    {  //conhecer lucas na praia
         printf("Enquanto %s estava observando o mar, surgiu no meio do nada um homem alto, ruivo e com várias tatuagens no braço, e esbarrou em %s.\n", jogador.nome,jogador.nome);
         printf("Assim que Lucas esbarrou ele gritou resmungando que uma pessoa sonsa e desmiolada pisou no pé dele. Logo depois quando ele olhou para %s, e viu o quanto %s é bem de aparência, falou que até que não é tão sonsa assim...\n",jogador.nome,jogador.nome);
         pause();
@@ -331,7 +332,8 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         printf("1. Perguntar o por que de o Lucas e o Gabriel se odiarem\n");
         printf("2. Se tornar amiga de Lucas\n");
         subescolha=digita_escolha();
-        if(subescolha==1){
+        if(subescolha==1)
+        {
            printf("(Acusar de assasinato)");
             pause();
             if(jogador.inteligencia<4){
@@ -341,6 +343,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             else{
                 printf("(falar que o jogador nao acredita nisso)");
             }
+        }
         else if(subescolha==2){
             vilao.amor+=1;
             jogador.amorVilao+=1;
@@ -395,45 +398,16 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
 
     //quest 4   Combate
 
-    printf(" ");
-
-    if(escolha==1){  
-        printf("   ");
-
-
-
-
-
-       jogador->quests+=1; 
-    }
-    else if(escolha==2){ 
-
-
-
-
-
-
-        jogador->quests+=1;
-    }
-    else
-        printf("Escolha errada, tentar novamente.");
-
+    combate(jogador,heroi,perdonagem);
+    jogador->quests+=1;
 
     limpar_tela();
 
     //quest 5   final
+    final(jogador,heroi,vilao);
+    jogador->quests+=1;
 
-
-
-
-
-
-
-
-
-
-
-
+    limpar_tela();
 
 
     salvar_jogo(&jogador);
@@ -580,5 +554,15 @@ void lerCapitulo(const char *chap)
         digitar(linha,  30); // imprime com efeito de digitação    
     }
     fclose(cap);
+
+}
+
+void combate(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao)
+{
+
+
+
+
+
 
 }
