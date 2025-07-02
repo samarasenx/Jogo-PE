@@ -203,10 +203,10 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         heroi.amor+=1;
         printf("Gabriel já encantado por %s, deu o livro favorito dele para %s, tendo em vista que os dois compatilham do mesmo interese por literatura. Guarde na sua bolsa.\n"jogador.nome,jogador.nome);
         jogador->itens+=1;
-        printf("Agora sua bolsa possui 1 item, você pode colocar até 10 itens nela.\n");
+        printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
         if(jogador.sorte>3){
             printf("A sorte está a seu favor! Gabriel gostou muito de você e para mostrar essa adimiração te deu um colar de ondas, para você sempre lembrar dele ao ver o mar. Guarde na sua bolsa.\n");
-            printf("Agora sua bolsa possui 2 item, você pode colocar até 10 itens nela.\n");
+            printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
             jogador->itens+=1;
             jogador.amorHeroi+=1;
         }
@@ -220,17 +220,26 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         printf("Mal sabia %s que Lucas estava começando a se apaixonar...",jogador.nome);
         pause();
         printf("Lucas deu uma flor que pegou do jardim da praça para %s, e falou que nunca tinha visto alguém tão chato ficar bem com uma flor no cabelo.\n",jogador.nome);
-        printf("Escolha agora o que fazer com essa flor. Lembrando que você tem espaço para 10 itens na sua bolsa.\n");
+        printf("Escolha agora o que fazer com essa flor. Lembrando que a capacidade total da bolsa é de 10 itens.\n");
+        printf("1. Guardar\n");
+        printf("2. Não guardar\n");
         int subescolha = digita_escolha();
-        if(subescolhaescolha==1){
-            printf("Agora sua bolsa possui 1 item, você pode colocar até 10 itens nela.\n");
+        if(subescolha==1){
+            printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
             jogador.amorVilao+=1;
+            jogador.estilo+=1;
             jogador->itenss+=1;
         }
+        else if(subescolha==2)
+            continue;
+        else
+            printf("Escolha errada, tentar novamente.");
         jogador->quests+=1;
     }
     else
         printf("Escolha errada, tentar novamente.");
+
+
     limpar_tela();
 
     //quest 2
@@ -241,19 +250,107 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         while (escolha == 1) {
             //continuação da história se o jogador foi para a BIBLIOTECA
             printf("Você atende o telefone e escuta a voz de Gabriel do outro lado...\n");
+            pause();
+            printf("Gabriel chamou %s para um encontro no restaurante.\n",jogador.nome);
+            printf("Escolha uma dessas opções: \n");
+            printf("1. Sair com Gabriel\n");
+            printf("2. Não sair com Gabriel\n");
+            subescolha=digita_escolha();
+            if(subescolha==1){
+                jogador.amorHeroi+=1;
+                printf("Gabriel chegou no encontro com um buque de flores para te dar.\n");
+                jogador->itenss+=1;
+                printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
+                pause();
+                printf("Vocês tiveram um ótimo encontro, ele foi super carinhoso e amoroso com você, aos poucos %s vai se apaixonando cada vez mais por Gabriel.\n");
+            }
+            else if(subescolha==2)
+                continue;
+            else
+                printf("Escolha errada, tentar novamente.");
+            limpar_tela();
             break; // se não quiser loop infinito, use break ou alguma condição de saída
         }
-
+        jogador->quests+=1;
     } else if (escolha == 2) {
         printf("Voltando para casa, %s encontra um bilhete estranho deixado por Lucas...\n", jogador.nome);
 
         while (escolha == 2) {
             // Continuação da história se o jogador foi para a PRAÇA
             printf("O bilhete dizia: Ainda quero te ver usando aquela flor mesmo você sendo meio esquisita...\n");
+            jogador.amorVilao+=1;
+            pause();
+            printf("%s sentiu um mix de emoções naquele momento,mas gostou do bilhete.\n",jogador.nome);
+            printf("Depois quando foi olhar o verso do bilhete viu que tinha escrito algo. Estava escrito: %s, você gostaria de sair comigo para andar de moto um pouco?\n",jogador.nome);
+            printf("Escolha uma das opções: ");
+            printf("1. Sair com Lucas\n");
+            printf("2. Não sair com Lucas\n");
+            subescolha=digita_escolha();
+            if(subescolha==1){
+                jogador.amorVilao+=1;
+                printf("Vocês tiveram um encontro meio estranho mas bom, Lucas passou o caminho todo implicando com você e zombando do seu estilo.\n");
+                printf("Lucas deu sua jaqueta de couro para %s ficar, já que estava fazendo muito frio a noite naquele momento.\n",jogador.nome);
+                jogador->itenss+=1;
+            }
+            else if(subescolha==2)
+                continue;
+            else
+                printf("Escolha errada, tentar novamente.");
+            limpar_tela();
             break; // ou outro critério de saída
         }
+        jogador->quests+=1;
     }
+        else
+        printf("Escolha errada, tentar novamente.");
+
+
+    limpar_tela();
+
+    //quest 3
     
+    printf("No outro dia de manhã, %s decidiu ir a Praia ver o mar e pegar um pouco de sol.\n",jogador.nome);
+    if(escolha==1){  //conhecer lucas na praia
+
+
+
+
+
+
+       jogador->quests+=1; 
+    }
+    else if(escolha==2){ //  conhecer gabriel na praia
+
+
+
+
+
+
+        jogador->quests+=1;
+    }
+    else
+        printf("Escolha errada, tentar novamente.");
+
+
+    limpar_tela();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     salvar_jogo(&jogador);
     salvar_personagem(PERSONAGEM *jogador, const char *filaname);
