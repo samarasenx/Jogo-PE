@@ -19,7 +19,8 @@ int dado(int *jogador.sorte);
 void status(PERSONAGEM *jogador);
 void combate(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao);
 void integrantes();
-void lerCapitulo(const char *chap);
+void lerCapitulo(const charchap);
+void digitar(const char texto, int velocidade);
 
 
 
@@ -41,14 +42,13 @@ typedef struct GABRIEL_   //heroi
 {     
     int defesa;   
     int amor;     
-    int estilo;
-    int nerd;  
+    int inteligencia;  
 
 }GABRIEL;
 
 typedef struct LUCAS_   //vilao carismatico que vai tentar roubar a PERSONAGEM do heroi
 {
-    int carisma;   
+    int estilo;   
     int ataque;   
     int amor;    
 
@@ -347,6 +347,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         else if(subescolha==2){
             vilao.amor+=1;
             jogador.amorVilao+=1;
+            jogador.carisma+=2;
             // ganhar item
 
         }
@@ -382,6 +383,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         else if(subescolha==2){
             heroi.amor+=1;
             jogador.amorHeroi+=1;
+            jogador.carisma+=1;
             // ganhar item
 
         }
@@ -543,18 +545,18 @@ void status(PERSONAGEM *jogador)
    printf("=======================\n\n");
 }
 
-void lerCapitulo(const char *chap)
-{
-    FILE *cap = fopen(chap, "rt"); // abre o arquivo de texto    
-    if (!cap) {        
-        printf("Erro ao abrir o arquivo %s\n", chap);    
+void lerCapitulo(const charchap) {
+    FILE *cap = fopen(chap, "rt"); // abre o arquivo de texto
+    if (!cap) {
+        printf("Erro ao abrir o arquivo %s\n", chap);
     }
-    char linha[256];    
-    while (fgets(linha, sizeof(linha), cap)) {        
-        digitar(linha,  30); // imprime com efeito de digitação    
-    }
-    fclose(cap);
 
+    char linha[25600];
+    while (fgets(linha, sizeof(linha), cap)) {
+        digitar(linha,  30); // imprime com efeito de digitação
+    }
+
+    fclose(cap);
 }
 
 void combate(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao)
@@ -565,4 +567,12 @@ void combate(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao)
 
 
 
+}
+
+void digitar(const char texto, int velocidade) {  // Faz com que o texto apareça gradualmente
+    for (;texto; texto++) {
+        putchar(texto);    // Imprime caractere
+        fflush(stdout); // Faz com que o texto não fique preso no buffer
+        Sleep(velocidade); // Cria o efeito de digitação
+    }
 }
