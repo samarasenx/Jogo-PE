@@ -363,12 +363,14 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             if(jogador.inteligencia<4){
                 printf("(falar que o jogador acredita nisso)");
                 jogador.inteligencia-=1;
+                jogador.amorVilao+=1;
                 vilao.ataque+=2;
 
             }
             else{
                 printf("(falar que o jogador nao acredita nisso)");
                 jogador.inteligencia+=1;
+                jogador.amorHeroi+=1;
                 heroi.defesa+=2;
             }
         }
@@ -378,7 +380,16 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             jogador.carisma+=2;
 
             printf("(falar que quer ser amiga e que confia em lucas)");
-            // ganhar item
+
+            if(jogador.estilo>4){
+                printf("(falar que Lucas deu dois presente para jogador)");
+                printf("Adicionou 2 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
+                jogador->itenss+=2;
+                jogador.amorVilao+=1;
+            }
+          
+
+
 
         }
         else
@@ -404,14 +415,14 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             if(jogador.inteligencia<4){
                 printf("(falar que o jogador acredita nisso)");
                 jogador.inteligencia+=1;
+                jogador.amorHeroi+=1;
                 heroi.defesa+=2;
-
-
             }
             else{
                 printf("(falar que o jogador nao acredita nisso)");
                 jogador.inteligencia-=1;
-                vilao.ataque+=2
+                jogador.amorVilao+=1;
+                vilao.ataque+=2;
             }
 
         }
@@ -419,10 +430,11 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             heroi.amor+=1;
             jogador.amorHeroi+=1;
             jogador.carisma+=4;
-            if(jogador.carisma<4){
+            if(jogador.carisma>4){
                 printf("(falar que Gabriel deu dois presente para jogador)");
-                printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
+                printf("Adicionou 2 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
                 jogador->itenss+=2;
+                jogador.amorHeroi+=1;
             }
             
 
