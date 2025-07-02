@@ -18,6 +18,7 @@ int dado(int *jogador.sorte);
 void status(PERSONAGEM *jogador);
 void combate();
 void integrantes();
+void lerCapitulo(const char *chap);
 
 
 
@@ -318,11 +319,28 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     
     printf("No outro dia de manhã, você decidiu ir a Praia ver o mar e pegar um pouco de sol.\n");
     if(escolha==1){  //conhecer lucas na praia
-        printf("Enquanto %s estava observando o mar, surgiu no meio do nada um homem alto, ruivo e com várias tatuagens no braço, e esbarrou em %s.\n Assim que Lucas esbarrou ele gritou resmungando que uma pessoa sonsa e desmiolada pisou no pé dele. Logo depois quando ele olhou para %s, e viu o quanto %s é bem de aparência, falou que até que não é tão sonsa assim...",jogador.nome,jogador.nome,jogador.nome,jogador.nome);
+        printf("Enquanto %s estava observando o mar, surgiu no meio do nada um homem alto, ruivo e com várias tatuagens no braço, e esbarrou em %s.\n", jogador.nome,jogador.nome);
+        printf("Assim que Lucas esbarrou ele gritou resmungando que uma pessoa sonsa e desmiolada pisou no pé dele. Logo depois quando ele olhou para %s, e viu o quanto %s é bem de aparência, falou que até que não é tão sonsa assim...\n",jogador.nome,jogador.nome);
+        pause();
+        printf("Você é nova por aqui né, sou a primeira pessoa que você conheceu por aqui? Com certeza sou a mais bonita né pode falar.\n");
+        pause();
+        printf("%s diz que não, a primeira pessoa que %s conheceu foi Gabriel.",jogador.nome,jogador.nome);
+        printf("O QUE??? O GABRIEL?? Aquele nerd esquisito! Você precisa urgentemente trocar esse seu ciclo de amizade. Vamos começar assim, primeiro eu viro seu amigo, você para de falar com o Gabriel e nós namoramos! Uma linda história você não achar?\n");
+        printf("Escolha uma opção: ");
+        printf("1. Perguntar o por que de o Lucas e o Gabriel se odiarem\n");
+        printf("2. Se tornar amiga de Lucas\n");
+        subescolha=digita_escolha();
+        if(subescolha==1){
+            printf(" ")
+
+        }
+        else if(subescolha==2){
 
 
 
-
+        }
+        else
+           printf("Escolha errada, tentar novamente."); 
 
        jogador->quests+=1; 
     }
@@ -369,7 +387,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
 
     limpar_tela();
 
-    //quest 5   
+    //quest 5   final
 
 
 
@@ -414,7 +432,7 @@ int continuar_jogo(PERSONAGEM *jogador, PROGRESSO *progresso_salvo)
         fclose(continuar);                
         if(resultado == 1) 
         {            
-            printf("Progresso carregado!\n");            
+            printf("Seu progresso carregado!\n");            
             return 0;        
         }    
     }        
@@ -470,7 +488,7 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
 
     printf("Rode um dado de 6 lados para ver o quanto de sorte você terá ao longo do seu verão.\n");
     pause();
-    printf("Você vai começar com %d de sorte, mas ao longo do jogo isso pode mudar.\n", dado(jogador.sorte));
+    printf("Você vai começar com %d de sorte, mas ao longo do jogo isso pode mudar.\n", jogador.sorte=dado(jogador.sorte));
     limpar_tela();
 
     printf("Seu amor vai começar com zero, mas quem sabe ao longo do tempo que você vai passar em Baía Azul isso não mude...\n");
@@ -480,8 +498,15 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
 
 void salvar_personagem(PERSONAGEM *jogador, const char *filename)
 {
-
-
+    FILE *fp;
+    fp=fopen(filename,"wb");
+    if(fp==NULL){
+        printf("Erro");
+    }
+    else{
+        fwrite(jogador,sizeof(PERSONAGEM),1,fp);
+    }
+    fclose(fp);
 
 }
 
@@ -508,4 +533,18 @@ void status(PERSONAGEM *jogador)
    printf("Inteligência: %d\n", jogador.inteligencia);    
    printf("Amor: %d\n", jogador.amor);    
    printf("=======================\n\n");
+}
+
+void lerCapitulo(const char *chap)
+{
+    FILE *cap = fopen(chap, "rt"); // abre o arquivo de texto    
+    if (!cap) {        
+        printf("Erro ao abrir o arquivo %s\n", chap);    
+    }
+    char linha[256];    
+    while (fgets(linha, sizeof(linha), cap)) {        
+        digitar(linha,  30); // imprime com efeito de digitação    
+    }
+    fclose(cap);
+
 }
