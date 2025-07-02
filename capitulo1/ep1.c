@@ -201,6 +201,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         printf("Após chegar na Biblioteca %s sem querer esbarrou em um homem alto, moreno e dos olhos azuis mais apaixonantes que %s já viu, que estava carregando uma pilha de livros. Logo depois de se esbarrarem Gabriel se apaixonou, e então eles começaram a conversar e se conhecer.\n", jogador.nome, jogador.nome);
         jogador.amorHeroi+=1;
         heroi.amor+=1;
+        heroi.inteligencia+=2;
         printf("Gabriel já encantado por %s, deu o livro favorito dele para %s, tendo em vista que os dois compatilham do mesmo interese por literatura. Guarde na sua bolsa.\n"jogador.nome,jogador.nome);
         jogador->itens+=1;
         printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
@@ -209,6 +210,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
             jogador->itens+=1;
             jogador.amorHeroi+=1;
+            heroi.amor+=1;
         }
         jogador->quests+=1;
     }
@@ -229,6 +231,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             jogador.amorVilao+=1;
             jogador.estilo+=1;
             jogador->itenss+=1;
+            vilao.amor+=1;
         }
         else if(subescolha==2)
             continue;
@@ -258,6 +261,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             subescolha=digita_escolha();
             if(subescolha==1){
                 jogador.amorHeroi+=1;
+                heroi.amor+=1;
                 printf("Gabriel chegou no encontro com um buque de flores para te dar.\n");
                 jogador->itenss+=1;
                 printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
@@ -288,9 +292,12 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             subescolha=digita_escolha();
             if(subescolha==1){
                 jogador.amorVilao+=1;
+                vilao.amor+=1;
                 printf("Vocês tiveram um encontro meio estranho mas bom, Lucas passou o caminho todo implicando com você e zombando do seu estilo.\n");
                 printf("Lucas deu sua jaqueta de couro para %s ficar, já que estava fazendo muito frio a noite naquele momento.\n",jogador.nome);
                 jogador->itenss+=1;
+                vilao.estilo+=2;
+                jogador.estilo+=2;
             }
             else if(subescolha==2)
                 continue;
@@ -309,9 +316,9 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
 
     //quest 3
     
-    printf("No outro dia de manhã, %s decidiu ir a Praia ver o mar e pegar um pouco de sol.\n",jogador.nome);
+    printf("No outro dia de manhã, você decidiu ir a Praia ver o mar e pegar um pouco de sol.\n");
     if(escolha==1){  //conhecer lucas na praia
-
+        printf("Enquanto %s estava observando o mar, surgiu no meio do nada um homem alto, ruivo e com várias tatuagens no braço, e esbarrou em %s.\n Assim que Lucas esbarrou ele gritou resmungando que uma pessoa sonsa e desmiolada pisou no pé dele. Logo depois quando ele olhou para %s, e viu o quanto %s é bem de aparência, falou que até que não é tão sonsa assim...",jogador.nome,jogador.nome,jogador.nome,jogador.nome);
 
 
 
@@ -334,10 +341,35 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
 
     limpar_tela();
 
+    //quest 4   Combate
+
+    printf(" ");
+
+    if(escolha==1){  
+        printf("   ");
 
 
 
 
+
+       jogador->quests+=1; 
+    }
+    else if(escolha==2){ 
+
+
+
+
+
+
+        jogador->quests+=1;
+    }
+    else
+        printf("Escolha errada, tentar novamente.");
+
+
+    limpar_tela();
+
+    //quest 5   
 
 
 
@@ -404,10 +436,10 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
     printf("1. Sapatênis, calça cargo e um casaco de capuz.\n");
     printf("2. Óculos de sol, vestido e sandália.\n");
     if(digita_escolha()==1)
-        jogador.estilo=3;
+        jogador.estilo=2;
         printf("Nossa muito fubanga, melhore seu estilo agora!!! Infelizmente você não é estilosa nota 3 para seu estilo.\n");
     else
-        jogador.estilo=10;
+        jogador.estilo=5;
         printf("Arrasouuuu!!! A mais estilosa que Baía Azul jáviu!! Com os seus incríveis 10 no quesito estilo.\n");
     limpar_tela();
 
