@@ -190,6 +190,10 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     jogador.amorVilao=0;
     heroi.amor=0;
     vilao.amor=0;
+    defesa.heroi=0;
+    ataque.vilao=0;
+    heroi.inteligencia=0;
+    vilao.estilo=0;
     // começo das quests
 
     //quest 1
@@ -206,6 +210,8 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         heroi.inteligencia+=2;
         printf("Gabriel já encantado por %s, deu o livro favorito dele para %s, tendo em vista que os dois compatilham do mesmo interese por literatura. Guarde na sua bolsa.\n",jogador.nome,jogador.nome);
         jogador->itens+=1;
+        heroi.inteligencia+=1;
+        heroi.defesa+=1;
         printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
         if(jogador.sorte>3){
             printf("A sorte está a seu favor! Gabriel gostou muito de você e para mostrar essa adimiração te deu um colar de ondas, para você sempre lembrar dele ao ver o mar. Guarde na sua bolsa.\n");
@@ -213,6 +219,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             jogador->itens+=1;
             jogador.amorHeroi+=1;
             heroi.amor+=1;
+            heroi.defesa+=1;
         }
         jogador->quests+=1;
     }
@@ -224,6 +231,8 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
         printf("Mal sabia %s que Lucas estava começando a se apaixonar...",jogador.nome);
         pause();
         printf("Lucas deu uma flor que pegou do jardim da praça para %s, e falou que nunca tinha visto alguém tão chato ficar bem com uma flor no cabelo.\n",jogador.nome);
+        vilao.estilo+=2;
+        vilao.ataque+=1;
         printf("Escolha agora o que fazer com essa flor. Lembrando que a capacidade total da bolsa é de 10 itens.\n");
         printf("1. Guardar\n");
         printf("2. Não guardar\n");
@@ -234,6 +243,8 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             jogador.estilo+=1;
             jogador->itenss+=1;
             vilao.amor+=1;
+            vilao.estilo+=1;
+            vilao.ataque+=1;
         }
         else if(subescolha==2)
             continue;
@@ -264,6 +275,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             if(subescolha==1){
                 jogador.amorHeroi+=1;
                 heroi.amor+=1;
+                heroi.defesa+=3;
                 printf("Gabriel chegou no encontro com um buque de flores para te dar.\n");
                 jogador->itenss+=1;
                 printf("Adicionou 1 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
@@ -295,6 +307,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             if(subescolha==1){
                 jogador.amorVilao+=1;
                 vilao.amor+=1;
+                vilao.ataque+=3;
                 printf("Vocês tiveram um encontro meio estranho mas bom, Lucas passou o caminho todo implicando com você e zombando do seu estilo.\n");
                 printf("Lucas deu sua jaqueta de couro para %s ficar, já que estava fazendo muito frio a noite naquele momento.\n",jogador.nome);
                 jogador->itenss+=1;
@@ -342,6 +355,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             }
             else{
                 printf("(falar que o jogador nao acredita nisso)");
+                jogador.inteligencia+=1;
             }
         }
         else if(subescolha==2){
@@ -401,7 +415,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
     //quest 4   Combate
 
     combate(jogador,heroi,perdonagem);
-    jogador->quests+=1;
+    
 
     limpar_tela();
 
@@ -489,10 +503,10 @@ void criar_personagem(Personagem *jogador) // NAO TERMINEI
     printf("1. Arrogante, mal educada, ignorante, sem noção.\n");
     printf("2. Comunicativa, empática, autentêntica e é uma pessoa amorosa.\n");
     if(digita_escolha()==1)
-        jogador.carisma=3;
+        jogador.carisma=2;
         printf("Você precisa melhorar como pessoa urgentemente. Ninguém te aguenta nota 3 de carisma para você.\n");
     else
-        jogador.carisma=10;
+        jogador.carisma=5;
         printf("Parabéns todos te amam você é a diva suprema, nota 10 para o seu carisma.\n");
     limpar_tela();
 
@@ -561,11 +575,29 @@ void lerCapitulo(const charchap) {
 
 void combate(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao)
 {
+    printf(" (falar que o jogador foi ao bar da cidade e encontrou tanto lucas quanto gabriel)");
+    printf("( Falar que eles começaram a brigar por você e um acusava o outro de ter matado uma menina)");
 
+    int defesaGabriel = heroi.defesa + heroi.inteligencia;
+    int ataqueLucas = vilao.ataque + vilao.estilo;
+    
+    if (ataqueLucas > defesaGabriel) {
+        printf("(Lucas venceu essa disputa! Ele conseguiu chamar mais atenção de %s...)\n", jogador.nome);
+        jogador.amorVilao += 2;
+        jogador.amorHeroi -= 1;
+        vilao.amor++;
+    } else if (defesaGabriel > ataqueLucas) {
+        printf("(Gabriel encantou ainda mais %s com sua inteligência e carinho!)\n", jogador.nome);
+        jogador.amorHeroi += 2;
+        jogador.amorVilao -= 1;
+        heroi.amor++;
+    } else {
+        printf("(Empate! %s ficou indecisa com o charme dos dois...)\n", jogador.nome);
+        jogador.amorHeroi += 1;
+        jogador.amorVilao += 1;
+    }
 
-
-
-
+    jogador->quests+=1;
 
 }
 
