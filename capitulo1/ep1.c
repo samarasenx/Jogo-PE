@@ -138,7 +138,12 @@ void final(PERSONAGEM *jogador, GABRIEL *heroi, LUCAS *vilao)
     }
     else{
         printf("(Aceita pedido de namoro lucas)\n");
-        printf("MORREU!!!!");
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        WORD attributes = BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+        SetConsoleTextAttribute(hConsole, attributes);
+        printf("ACABOU DE MORRER!!!!!!!!!!\n");
+        system("pause");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
         printf("(Contar passado obscuro de Lucas e falar que ele é um serial killer)\n");
     }
     jogador->quests+=1;
