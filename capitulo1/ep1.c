@@ -435,6 +435,7 @@ void novo_jogo(PERSONAGEM *jogador) // NaO TERMINEI
             heroi.amor+=1;
             jogador.amorHeroi+=1;
             jogador.carisma+=4;
+            printf("(falar que quer ser amiga e que confia em gabriel)");
             if(jogador.carisma>4){
                 printf("(falar que Gabriel deu dois presente para jogador)");
                 printf("Adicionou 2 item a sua bolsa, e a capacidade total da bolsa é de 10 itens.\n");
