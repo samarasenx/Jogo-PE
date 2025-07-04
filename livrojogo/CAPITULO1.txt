@@ -1,0 +1,4 @@
+Para passar o tempo você decidiu que precisava explorar um pouco por Baía Azul, mas não sabia ao certo se iria para a Biblioteca local ou para Praça.
+Escolha uma das opções: 
+1. Biblioteca
+2. Praça
