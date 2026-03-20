@@ -25,11 +25,13 @@ Cada escolha pode levar a diferentes consequências, tornando a experiência ún
 
 ## 📖 História (sem spoilers)
 
-O jogo acompanha a trajetória de um personagem que se vê diante de situações desafiadoras e decisões importantes. Ao longo da jornada, o jogador precisa avaliar riscos, tomar decisões estratégicas e lidar com as consequências de suas escolhas.
+A narrativa do jogo se desenvolve a partir do encontro entre personagens cujas trajetórias se cruzam em um momento decisivo, dando início a uma história marcada por sentimentos, dúvidas e escolhas difíceis. Ambientado em um contexto que mistura rotina, conflitos pessoais e momentos de vulnerabilidade, o jogo convida o jogador a acompanhar de perto a evolução dessa relação.
 
-A narrativa foi construída para criar imersão e incentivar o pensamento crítico, fazendo com que cada decisão tenha impacto no desenrolar da história.
+Ao longo da jornada, o jogador presencia diálogos e situações que revelam pouco a pouco a profundidade dos personagens, seus medos, expectativas e intenções. As interações são construídas com base em textos narrativos que conduzem a experiência, permitindo que cada decisão tomada influencie diretamente o desenvolvimento do vínculo entre os personagens.
 
-⚠️ Importante: O jogo possui **dois finais possíveis**, dependendo das escolhas feitas ao longo do caminho. Isso incentiva o jogador a explorar diferentes possibilidades e rejogar para descobrir todos os desfechos.
+Mais do que uma simples progressão de eventos, o jogo propõe uma reflexão sobre como pequenas escolhas podem transformar completamente o rumo de uma história. Nesse sentido, a experiência pode se desenrolar como uma história de amor ou evoluir para um romance trágico, dependendo das atitudes adotadas pelo jogador ao longo do caminho.
+
+⚠️ Importante: O jogo possui **dois finais possíveis**, determinados pelas decisões tomadas durante a narrativa. Isso incentiva a exploração de diferentes caminhos e reforça o impacto das escolhas na construção do desfecho.
 
 ---
 
